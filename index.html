@@ -1,55 +1,108 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Plex -&gt; Trakt.tv Scrobbler by tester22</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <title>Plex -&gt; Trakt.tv Scrobbler by tester22</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Plex -&gt; Trakt.tv Scrobbler</h1>
-        <p>Add what you are watching on Plex to trakt.tv</p>
-        <p class="view"><a href="https://github.com/tester22/Plex-Trakt-Scrobbler">View the Project on GitHub <small>tester22/Plex-Trakt-Scrobbler</small></a></p>
-        <ul>
-          <li><a href="https://github.com/tester22/Plex-Trakt-Scrobbler/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tester22/Plex-Trakt-Scrobbler/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tester22/Plex-Trakt-Scrobbler">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Plex-Trakt-Scrobbler</h1>
+    <div id="container">
+      <div class="inner">
 
-<p>This is a proof of concept for monitoring a Plex Media Server and scrobble the result to trakt.tv</p>
+        <header>
+          <h1>Plex -&gt; Trakt.tv Scrobbler</h1>
+          <h2>Add what you are watching on Plex to trakt.tv</h2>
+        </header>
 
-<h2>Usage:</h2>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/tester22/Plex-Trakt-Scrobbler/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/tester22/Plex-Trakt-Scrobbler/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/tester22/Plex-Trakt-Scrobbler" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-<p>Rename config_sample.ini to config.ini and add your username and password.
-Finally launch the script with python script.py and check that you don't get any errors in the terminal.
-See <a href="http://www.jotlab.com/2012/01/03/plex-trakt-a-scrobbling-love-story/">Jotlab</a> for a more in dept article.</p>
+        <hr>
 
-<h2>TODO:</h2>
+        <section id="main_content">
+          <h1>Plex Trakt Scrobbler</h1>
+
+<p><strong>WARNING:</strong> Do not use the autoscrobbling functionality if you are planning to use more than 1 client at a time.</p>
+
+<h2>Installation</h2>
+
+<h3>Add the plugin to Plex Media Server</h3>
+
+<p>Install the plugin from the <a href="http://forums.plexapp.com/index.php/topic/25523-unsupported-appstore/">Unsupported Appstore</a> or manually download the plugin from <a href="https://github.com/tester22/Plex-Trakt-Scrobbler/zipball/master">here</a>. This will give you the latest version of the code.</p>
 
 <ul>
-<li>Separate all functions</li>
-<li>Better error handling (eg don't die if the user is using a plugin or listening to music)</li>
-<li>Better logging</li>
-<li>Transform the script into a regular Plex plugin.</li>
+<li>Extract the zipfile and copy the <code>Trakttv.bundle</code> file to your Plex Media server plugin folder
+
+<ul>
+<li>On OS X: <code>~/Library/Application Support/Plex Media Server/Plug-ins</code>
+</li>
+<li>On Linux: <code>/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins</code>
+</li>
+<li>Windows: <code>C:\Documents and Settings\[username]\Local Settings\Application Data\Plex Media Server\Plug-ins</code>
+</li>
 </ul>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/tester22">tester22</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+</li>
+<li>In your Plex client, go to <code>Applications</code> -&gt; <code>Trakt.tv Scrobbler</code> -&gt; <code>Preferences</code>
+</li>
+<li>Enter your <a href="http://trakt.tv">Trakt.tv</a> username and password</li>
+</ul><h3>Set logging level in Plex Media Server</h3>
+
+<p>In order for the scrobbler to detect what you are playing, you will need to set the logging level in the Plex Media Server (PMS).</p>
+
+<ul>
+<li>Go to Plex / Web
+
+<ul>
+<li>Easiest way is to click on the PMS icon in the menu bar, then select <code>Media Manager...</code>
+</li>
+<li>If you have the dock icon enabled, clicking it will bring up the Plex / Web interface.</li>
+<li>Alternatively, you can visit http://localhost:32400/web, replacing the host and port if you have changed them.</li>
+</ul>
+</li>
+<li>Click on <code>Settings</code> (screwdriver / wrench logo)</li>
+<li>Click <code>Show advanced settings</code>
+</li>
+<li>Check the box for <code>Plex Media Server verbose logging</code>
+</li>
+<li>Click <code>Save</code>
+</li>
+</ul><p>Now everything should be ready for you to start scrobbling your Movies and TV Shows to Trakt!</p>
+
+<h2>Issues</h2>
+
+<p>The plugin is still work in progress so there may be bugs. Please report all bugs on the <a href="http://forums.plexapp.com/index.php/topic/35626-plex-media-server-scrobbler-for-trakttv/">Plex forum thread</a>.</p>
+
+<p>Code contributions are also welcome. Submit pull requests via GitHub and they will be reviewed and merged in.</p>
+        </section>
+
+        <footer>
+          Plex -&gt; Trakt.tv Scrobbler is maintained by <a href="https://github.com/tester22">tester22</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-9846472-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
   </body>
 </html>
